@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00da23bd-3a0e-40c5-8418-d101fcba20f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/multi_process/t1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/create_all_tables.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/create_specific_table.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/create_table_with_same_cols.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/db.sqlite" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/db2.sqlite" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/derop_a_table.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/get_table_from_db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/load_from_existing_db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/sql_expression.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/statement_delete.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/statement_insert.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/statement_join.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/statement_select.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sqlalchemy_demo/table_operation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsistentHash" beforeDir="false" afterPath="$PROJECT_DIR$/ConsistentHash" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsistentHash/.gitignore" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -179,6 +163,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
