@@ -6,7 +6,7 @@ FROM golang:alpine as builder
 RUN apk update && apk add --no-cache git ca-certificates tzdata && update-ca-certificates && apk add tree
 
 RUN adduser -D -g '' appuser
-
+ENV GOPROXY https://goproxy.cn
 WORKDIR /app
 
 # 先拷贝 go.mod 安装依赖项
