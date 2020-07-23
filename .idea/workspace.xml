@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00da23bd-3a0e-40c5-8418-d101fcba20f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsistentHash" beforeDir="false" afterPath="$PROJECT_DIR$/ConsistentHash" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsistentHash/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_redis/ch03_listing_source.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_redis/ch03_listing_source.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,13 +73,72 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multi_process/t1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
                 <element signature="e#179#216#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/python_redis/ch01_listing_source.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4350">
+              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+              <folding>
+                <element signature="e#1#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/python_redis/ch03_listing_source.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="575" column="44" selection-start-line="575" selection-start-column="44" selection-end-line="575" selection-end-column="44" />
+              <folding>
+                <element signature="e#134#1143#1" />
+                <element signature="e#1146#3261#1" />
+                <element signature="e#3263#4585#1" />
+                <element signature="e#4587#6009#1" />
+                <element signature="e#6101#6444#0" />
+                <element signature="e#6226#6444#0" />
+                <element signature="e#6445#6480#0" />
+                <element signature="e#6689#8069#1" />
+                <element signature="e#8072#8879#1" />
+                <element signature="e#8881#9792#1" />
+                <element signature="e#9794#10826#1" />
+                <element signature="e#10828#12596#1" />
+                <element signature="e#12598#14418#1" />
+                <element signature="e#14442#14536#0" />
+                <element signature="e#14488#14536#0" />
+                <element signature="e#14560#14856#0" />
+                <element signature="e#14730#14856#0" />
+                <element signature="e#14858#17883#1" />
+                <element signature="e#17886#19482#1" />
+                <element signature="e#19484#20533#1" />
+                <element signature="e#20535#21814#1" />
+                <element signature="e#21901#22470#0" />
+                <element signature="e#22278#22470#0" />
+                <element signature="e#22471#22510#0" />
+                <element signature="e#23136#23916#0" />
+                <element signature="e#23367#23916#0" />
+                <element signature="e#23384#23817#0" />
+                <element signature="e#23474#23745#0" />
+                <element signature="e#24010#24412#0" />
+                <element signature="e#24330#24391#0" />
+                <element signature="e#24413#24452#0" />
+                <element signature="e#24555#25497#1" />
+                <element signature="e#25596#25638#0" />
+                <element signature="e#25692#25972#0" />
+                <element signature="e#25792#25917#0" />
+                <element signature="e#26192#26229#0" />
               </folding>
             </state>
           </provider>
@@ -112,6 +173,7 @@
       <list>
         <option value="$PROJECT_DIR$/algorithms/sort/merge_sort.py" />
         <option value="$PROJECT_DIR$/multi_process/t1.py" />
+        <option value="$PROJECT_DIR$/python_redis/ch03_listing_source.py" />
       </list>
     </option>
   </component>
@@ -152,7 +214,7 @@
             <path>
               <item name="mycookbook" type="b2602c69:ProjectViewProjectNode" />
               <item name="mycookbook" type="462c0819:PsiDirectoryNode" />
-              <item name="sqlalchemy_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="python_redis" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -248,19 +310,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594871636751</updated>
-      <workItem from="1594871660442" duration="6679000" />
+      <workItem from="1594871660442" duration="7358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6679000" />
+    <option name="totallyTimeSpent" value="7358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -279,7 +341,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info active="true" anchor="right" id="Run" order="5" side_tool="true" visible="true" weight="0.42004263" />
+      <window_info anchor="right" id="Run" order="5" side_tool="true" visible="true" weight="0.42004263" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -390,9 +452,64 @@
     <entry file="file://$PROJECT_DIR$/multi_process/t1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
           <folding>
             <element signature="e#179#216#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python_redis/ch01_listing_source.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4350">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python_redis/ch03_listing_source.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="575" column="44" selection-start-line="575" selection-start-column="44" selection-end-line="575" selection-end-column="44" />
+          <folding>
+            <element signature="e#134#1143#1" />
+            <element signature="e#1146#3261#1" />
+            <element signature="e#3263#4585#1" />
+            <element signature="e#4587#6009#1" />
+            <element signature="e#6101#6444#0" />
+            <element signature="e#6226#6444#0" />
+            <element signature="e#6445#6480#0" />
+            <element signature="e#6689#8069#1" />
+            <element signature="e#8072#8879#1" />
+            <element signature="e#8881#9792#1" />
+            <element signature="e#9794#10826#1" />
+            <element signature="e#10828#12596#1" />
+            <element signature="e#12598#14418#1" />
+            <element signature="e#14442#14536#0" />
+            <element signature="e#14488#14536#0" />
+            <element signature="e#14560#14856#0" />
+            <element signature="e#14730#14856#0" />
+            <element signature="e#14858#17883#1" />
+            <element signature="e#17886#19482#1" />
+            <element signature="e#19484#20533#1" />
+            <element signature="e#20535#21814#1" />
+            <element signature="e#21901#22470#0" />
+            <element signature="e#22278#22470#0" />
+            <element signature="e#22471#22510#0" />
+            <element signature="e#23136#23916#0" />
+            <element signature="e#23367#23916#0" />
+            <element signature="e#23384#23817#0" />
+            <element signature="e#23474#23745#0" />
+            <element signature="e#24010#24412#0" />
+            <element signature="e#24330#24391#0" />
+            <element signature="e#24413#24452#0" />
+            <element signature="e#24555#25497#1" />
+            <element signature="e#25596#25638#0" />
+            <element signature="e#25692#25972#0" />
+            <element signature="e#25792#25917#0" />
+            <element signature="e#26192#26229#0" />
           </folding>
         </state>
       </provider>

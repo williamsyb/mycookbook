@@ -307,7 +307,7 @@ True                                                #G
 
 def publisher(n):
     time.sleep(1)
-    for i in xrange(n):
+    for i in range(n):
         conn.publish('channel', i)
         time.sleep(1)
 
