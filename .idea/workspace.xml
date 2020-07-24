@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00da23bd-3a0e-40c5-8418-d101fcba20f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsistentHash" beforeDir="false" afterPath="$PROJECT_DIR$/ConsistentHash" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsistentHash/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_redis/ch03_listing_source.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_redis/ch03_listing_source.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

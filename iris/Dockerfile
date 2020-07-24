@@ -2,25 +2,24 @@
 # STEP 1 编译源代码
 ############################
 FROM golang:alpine as builder
-
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 RUN apk update && apk add --no-cache git ca-certificates tzdata && update-ca-certificates && apk add tree
 
 RUN adduser -D -g '' appuser
-ENV GOPROXY https://goproxy.cn
+ENV GOPROXY https://goproxy.io,direct
 WORKDIR /app
 
 # 先拷贝 go.mod 安装依赖项
 # 这样改变源代码时，重新构建镜像，就不用重复拉取依赖项了(use cache)
 COPY ./go.mod ./go.mod
-RUN go mod download
-
+RUN GO111MODULE=on go mod download
 # 再拷贝源代码
 COPY . .
 RUN pwd && tree .
 
 # 编译（尽量干掉 GOPATH）
 # ENV GOPATH="$(pwd):$GOPATH"
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o /go/bin/iris iris.go
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o /go/bin/iris
 
 ############################
 # STEP 2 构建执行镜像
@@ -43,4 +42,5 @@ USER appuser
 ENV PORT=8080
 
 # 默认运行 adapter
-ENTRYPOINT ["/go/bin/iris"]
+#ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/sh","-c","['/go/bin/iris']"]
