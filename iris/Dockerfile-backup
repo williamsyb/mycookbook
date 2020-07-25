@@ -25,17 +25,17 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o 
 ############################
 # STEP 2 构建执行镜像
 ############################
-#FROM scratch
+FROM scratch
 
 # 导入 HTTPS 证书等
-#COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
-#COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-#COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /etc/passwd /etc/passwd
 
 # 拷贝二进制
-#WORKDIR /app
-#COPY --from=builder /go/bin/iris /go/bin/iris
-#COPY --from=builder /app/web /go/bin/
+WORKDIR /app
+COPY --from=builder /go/bin/iris /go/bin/iris
+COPY --from=builder /app/web /go/bin/
 # 使用普通账户权限，不使用 root
 USER appuser
 # 服务端口
