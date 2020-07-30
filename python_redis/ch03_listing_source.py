@@ -1,4 +1,3 @@
-
 import threading
 import time
 import unittest
@@ -8,7 +7,7 @@ import redis
 ONE_WEEK_IN_SECONDS = 7 * 86400
 VOTE_SCORE = 432
 ARTICLES_PER_PAGE = 25
-
+conn = redis.Redis()
 '''
 # <start id="string-calls-1"/>
 >>> conn = redis.Redis()
@@ -33,7 +32,6 @@ True                            #E
 #E And when we set the key, we can set it as a string, but still manipulate it like an integer
 #END
 '''
-
 
 '''
 # <start id="string-calls-2"/>
@@ -143,6 +141,7 @@ True                                        #F
 #END
 '''
 
+
 # <start id="exercise-update-token"/>
 def update_token(conn, token, user, item=None):
     timestamp = time.time()
@@ -150,15 +149,17 @@ def update_token(conn, token, user, item=None):
     conn.zadd('recent:', token, timestamp)
     if item:
         key = 'viewed:' + token
-        conn.lrem(key, item)                    #A
-        conn.rpush(key, item)                   #B
-        conn.ltrim(key, -25, -1)                #C
+        conn.lrem(key, item)  # A
+        conn.rpush(key, item)  # B
+        conn.ltrim(key, -25, -1)  # C
         conn.zincrby('viewed:', item, -1)
+
+
 # <end id="exercise-update-token"/>
-#A Remove the item from the list if it was there
-#B Push the item to the right side of the LIST so that ZRANGE and LRANGE have the same result
-#C Trim the LIST to only include the most recent 25 items
-#END
+# A Remove the item from the list if it was there
+# B Push the item to the right side of the LIST so that ZRANGE and LRANGE have the same result
+# C Trim the LIST to only include the most recent 25 items
+# END
 
 
 '''
@@ -188,7 +189,6 @@ set(['a'])                                      #F
 #F When an item doesn't exist in the first set during a SMOVE, it isn't added to the destination SET
 #END
 '''
-
 
 '''
 # <start id="set-calls-2"/>
@@ -305,11 +305,13 @@ True                                                #G
 #END
 '''
 
+
 def publisher(n):
     time.sleep(1)
     for i in range(n):
         conn.publish('channel', i)
         time.sleep(1)
+
 
 def run_pubsub():
     threading.Thread(target=publisher, args=(3,)).start()
@@ -317,12 +319,13 @@ def run_pubsub():
     pubsub.subscribe(['channel'])
     count = 0
     for item in pubsub.listen():
-        print item
+        print(item)
         count += 1
         if count == 4:
             pubsub.unsubscribe()
         if count == 5:
             break
+
 
 '''
 # <start id="pubsub-calls-1"/>
@@ -381,7 +384,6 @@ def run_pubsub():
 #K When we unsubscribe, we receive a message telling us which channels we have unsubscribed from and the number of channels we are still subscribed to
 #END
 '''
-
 
 '''
 # <start id="sort-calls"/>
@@ -467,26 +469,29 @@ def run_pubsub():
 #END
 '''
 
+
 # <start id="exercise-fix-article-vote"/>
 def article_vote(conn, user, article):
     cutoff = time.time() - ONE_WEEK_IN_SECONDS
-    posted = conn.zscore('time:', article)                      #A
+    posted = conn.zscore('time:', article)  # A
     if posted < cutoff:
         return
 
     article_id = article.partition(':')[-1]
     pipeline = conn.pipeline()
     pipeline.sadd('voted:' + article_id, user)
-    pipeline.expire('voted:' + article_id, int(posted-cutoff))  #B
+    pipeline.expire('voted:' + article_id, int(posted - cutoff))  # B
     if pipeline.execute()[0]:
-        pipeline.zincrby('score:', article, VOTE_SCORE)         #C
-        pipeline.hincrby(article, 'votes', 1)                   #C
-        pipeline.execute()                                      #C
+        pipeline.zincrby('score:', article, VOTE_SCORE)  # C
+        pipeline.hincrby(article, 'votes', 1)  # C
+        pipeline.execute()  # C
+
+
 # <end id="exercise-fix-article-vote"/>
-#A If the article should expire bewteen our ZSCORE and our SADD, we need to use the posted time to properly expire it
-#B Set the expiration time if we shouldn't have actually added the vote to the SET
-#C We could lose our connection between the SADD/EXPIRE and ZINCRBY/HINCRBY, so the vote may not count, but that is better than it partially counting by failing between the ZINCRBY/HINCRBY calls
-#END
+# A If the article should expire bewteen our ZSCORE and our SADD, we need to use the posted time to properly expire it
+# B Set the expiration time if we shouldn't have actually added the vote to the SET
+# C We could lose our connection between the SADD/EXPIRE and ZINCRBY/HINCRBY, so the vote may not count, but that is better than it partially counting by failing between the ZINCRBY/HINCRBY calls
+# END
 
 # Technically, the above article_vote() version still has some issues, which
 # are addressed in the following, which uses features/functionality not
@@ -505,7 +510,7 @@ def article_vote(conn, user, article):
             if not pipeline.sismember(voted, user):
                 pipeline.multi()
                 pipeline.sadd(voted, user)
-                pipeline.expire(voted, int(posted-cutoff))
+                pipeline.expire(voted, int(posted - cutoff))
                 pipeline.zincrby('score:', article, VOTE_SCORE)
                 pipeline.hincrby(article, 'votes', 1)
                 pipeline.execute()
@@ -515,26 +520,29 @@ def article_vote(conn, user, article):
         except redis.exceptions.WatchError:
             cutoff = time.time() - ONE_WEEK_IN_SECONDS
 
+
 # <start id="exercise-fix-get_articles"/>
 def get_articles(conn, page, order='score:'):
-    start = max(page-1, 0) * ARTICLES_PER_PAGE
+    start = max(page - 1, 0) * ARTICLES_PER_PAGE
     end = start + ARTICLES_PER_PAGE - 1
 
     ids = conn.zrevrangebyscore(order, start, end)
 
     pipeline = conn.pipeline()
-    map(pipeline.hgetall, ids)                              #A
+    map(pipeline.hgetall, ids)  # A
 
     articles = []
-    for id, article_data in zip(ids, pipeline.execute()):   #B
+    for id, article_data in zip(ids, pipeline.execute()):  # B
         article_data['id'] = id
         articles.append(article_data)
 
     return articles
+
+
 # <end id="exercise-fix-get_articles"/>
-#A Prepare the HGETALL calls on the pipeline
-#B Execute the pipeline and add ids to the article
-#END
+# A Prepare the HGETALL calls on the pipeline
+# B Execute the pipeline and add ids to the article
+# END
 
 '''
 # <start id="other-calls-1"/>
@@ -559,19 +567,23 @@ True                                            #C
 '''
 
 # <start id="exercise-no-recent-zset"/>
-THIRTY_DAYS = 30*86400
+THIRTY_DAYS = 30 * 86400
+
+
 def check_token(conn, token):
-    return conn.get('login:' + token)       #A
+    return conn.get('login:' + token)  # A
+
 
 def update_token(conn, token, user, item=None):
-    conn.setex('login:' + token, user, THIRTY_DAYS) #B
+    conn.setex('login:' + token, user, THIRTY_DAYS)  # B
     key = 'viewed:' + token
     if item:
         conn.lrem(key, item)
         conn.rpush(key, item)
         conn.ltrim(key, -25, -1)
         conn.zincrby('viewed:', item, -1)
-    conn.expire(key, THIRTY_DAYS)                   #C
+    conn.expire(key, THIRTY_DAYS)  # C
+
 
 def add_to_cart(conn, session, item, count):
     key = 'cart:' + session
@@ -579,10 +591,10 @@ def add_to_cart(conn, session, item, count):
         conn.hrem(key, item)
     else:
         conn.hset(key, item, count)
-    conn.expire(key, THIRTY_DAYS)               #D
+    conn.expire(key, THIRTY_DAYS)  # D
 # <end id="exercise-no-recent-zset"/>
-#A We are going to store the login token as a string value so we can EXPIRE it
-#B Set the value of the the login token and the token's expiration time with one call
-#C We can't manipulate LISTs and set their expiration at the same time, so we must do it later
-#D We also can't manipulate HASHes and set their expiration times, so we again do it later
-#END
+# A We are going to store the login token as a string value so we can EXPIRE it
+# B Set the value of the the login token and the token's expiration time with one call
+# C We can't manipulate LISTs and set their expiration at the same time, so we must do it later
+# D We also can't manipulate HASHes and set their expiration times, so we again do it later
+# END
