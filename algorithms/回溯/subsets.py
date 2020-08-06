@@ -81,7 +81,7 @@ def solution2(arr):
             backtrack(i+1, vol)
             stack.pop()
 
-    for v in range(size):
+    for v in range(size+1):
         backtrack(0, v)
     return results
 
