@@ -29,7 +29,64 @@ class Solution:
         return result
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+def solution(arr):
+    results = []
+    size = len(arr)
+    stack = []
+
+    def backtrack(start, vol):
+        if len(stack) == vol:
+            results.append(stack.copy())
+            return
+        for i in range(start, size):
+            stack.append(arr[i])
+            backtrack(i + 1, vol)
+            stack.pop()
+
+    for v in range(size):
+        backtrack(0, v)
+    return results
+
+
+
+
+
+
+
+
+
+def solution2(arr):
+    results = []
+    stack = []
+    size = len(arr)
+
+    def backtrack(start, vol):
+        if len(stack) == vol:
+            results.append(stack.copy())
+            return
+        for i in range(start, size):
+            stack.append(arr[i])
+            backtrack(i+1, vol)
+            stack.pop()
+
+    for v in range(size):
+        backtrack(0, v)
+    return results
+
 if __name__ == '__main__':
-    so = Solution()
-    res = so.subsets([1, 2, 3, 4])
-    pprint(res)
+    pprint(solution2([1,2,3,4]))
+    # so = Solution()
+    # res = so.subsets([1, 2, 3, 4])
+    # pprint(res)
