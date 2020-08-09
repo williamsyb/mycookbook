@@ -48,9 +48,29 @@ def solution(arr):
     return results
 
 
+class Solution2:
+    def subsets_with_dup(self, nums: List[int]) -> List[List[int]]:
+        results = []
+        route = []
+
+        nums.sort()
+
+        def backtrack(start):
+
+            results.append(route[:])
+            for i in range(start, len(nums)):
+                if i > start and nums[i] == nums[i - 1]:
+                    continue
+                route.append(nums[i])
+                backtrack(i + 1)
+                route.pop()
+
+        backtrack(0)
+        return results
+
 
 if __name__ == '__main__':
-    so = Solution()
-    # res = so.subsetsWithDup([1, 1, 1, 2, 3, 4])
-    res = solution([1, 1, 1, 2, 3, 4])
+    so = Solution2()
+    res = so.subsets_with_dup([1, 1, 1, 2, 3, 4])
+    # res = solution([1, 1, 1, 2, 3, 4])
     pprint(res)
