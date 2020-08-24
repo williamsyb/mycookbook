@@ -8,7 +8,7 @@ def show1():
     for i in range(1, 52, 2):
         lock_show2.acquire()
         print(i, end='')
-        print(i + 1, end='')
+        print(i + 1, end=' ')
         time.sleep(0.2)
         lock_show1.release()
 
