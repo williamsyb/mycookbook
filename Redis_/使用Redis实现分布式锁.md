@@ -1,8 +1,7 @@
-使用Redis实现分布式锁
-更新时间： 2020/07/13 GMT+08:00查看PDF分享
-本节基于华为云分布式缓存服务实践所编写，用于指导您在以下场景使用DCS实现分布式锁。
+#使用Redis实现分布式锁
+######本节基于华为云分布式缓存服务实践所编写，用于指导您在以下场景使用DCS实现分布式锁。
 
-场景介绍
+##场景介绍
 很多互联网场景（如商品秒杀，论坛回帖盖楼等），需要用加锁的方式，以对某种资源进行顺序访问控制。如果应用服务集群部署，则涉及到对分布式应用加锁。
 
 当前分布式加锁主要有三种方式：（磁盘）数据库、缓存数据库、Zookeeper。
@@ -12,17 +11,17 @@
 加锁操作简单，使用SET、GET、DEL等几条简单命令即可实现锁的获取和释放。
 性能优越，缓存数据的读写优于磁盘数据库与Zookeeper。
 可靠性强，DCS有主备和集群实例类型，避免单点故障。
-实践指导
+##实践指导
 准备一台弹性云服务器（ECS），选择Windows系统类型。
 在ECS上安装JDK1.8以上版本和Eclipse，下载jedis客户端（点此处直接下载jar包）。
 在华为云控制台购买DCS缓存实例。注意和ECS选择相同虚拟私有云、子网以及安全组。
 在ECS上运行Eclipse，创建一个java工程，为示例代码分别创建一个分布式锁实现类DistributedLock.java和测试类：CaseTest.java，并将jedis客户端作为libs引用到工程中。
 将DCS缓存实例的连接地址、端口以及连接密码配置到示例代码文件中。注意有两处需要配置密码信息，分别在getLockWithTimeout和releaseLock两个方法中。
 编译并运行得到结果。
-加锁实现
+##加锁实现
 须知：
 以下代码实现仅展示使用DCS服务进行加锁访问的便捷性。具体技术实现需要考虑死锁、锁的检查等情况，这里不做详细说明。
-
+```
 package dcsDemo01;
 
 import java.util.UUID;
@@ -109,10 +108,10 @@ public class DistributedLock {
         }
     }
 }
-
+```
 测试代码
 假设20个线程对10台mate10手机进行抢购：
-
+```
 package dcsDemo01;
 import java.util.UUID;
 
@@ -159,7 +158,8 @@ class ThreadBuy extends Thread {
         service.handleOder();
     }
 }
-
+```
+```
 运行结果
 配置好实际的缓存实例连接地址、端口与连接密码，运行代码，得到以下结果：
 
@@ -203,11 +203,12 @@ class ThreadBuy extends Thread {
 用户：935e0f50Thread-3无法购买，已售罄！
 正在为用户：d3eaae29Thread-4 处理订单
 用户：d3eaae29Thread-4无法购买，已售罄！
-
+```
 不加锁场景
 如果注释掉加锁代码，变成无锁情况，则抢购无序。
 
 //测试类中注释两行用于加锁的代码：
+```
 public void handleOder() {
     String userName = UUID.randomUUID().toString().substring(0,8) + Thread.currentThread().getName();
     //加锁代码
@@ -222,7 +223,8 @@ public void handleOder() {
     //加锁代码
     //DLock.releaseLock("Huawei Mate 10", identifier);
 }
-
+```
+```
 注释加锁代码后的运行结果，可以看出处理过程是无序的：
 
 正在为用户：e04934ddThread-5 处理订单
@@ -265,3 +267,4 @@ public void handleOder() {
 正在为用户：911b83fcThread-16 处理订单
 用户：911b83fcThread-16无法购买，已售罄！
 用户：4d7a8a2bThread-4购买第8台，剩余2台
+```
