@@ -20,7 +20,6 @@ from functools import lru_cache
 如:从 2 走到最底下最短路径为  2+3+5+1 = 11,即为我们所求的答案
 """
 
-
 #  定义数据模型
 triangle = [
     [2],
@@ -28,6 +27,12 @@ triangle = [
     [6, 5, 7, ],
     [9, 5, 4, 3, 5],
     [4, 1, 8, 2, 6, 3]
+]
+triangle = [
+    [2],
+    [3, 4],
+    [6, 5, 7],
+    [4, 1, 8, 3]
 ]
 
 
@@ -56,7 +61,7 @@ class Solution:
             return triangle[i][j]
         left = Solution.traverse_v2(i + 1, j, size)
         right = Solution.traverse_v2(i + 1, j + 1, size)
-        res = max(left, right) + triangle[i][j]
+        res = min(left, right) + triangle[i][j]
         return res
 
 
