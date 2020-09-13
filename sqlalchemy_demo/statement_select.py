@@ -11,7 +11,7 @@ from sqlalchemy import Table
 from sqlalchemy import select
 from sqlalchemy import or_
 
-db_uri = 'sqlite:///db3.sqlite'
+db_uri = 'sqlite:///db.sqlite'
 engine = create_engine(db_uri)
 conn = engine.connect()
 

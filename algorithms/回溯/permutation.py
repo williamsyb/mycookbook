@@ -1,6 +1,7 @@
 from pprint import pprint
 from typing import List
 
+
 def solution(arr):
     size = len(arr)
     results = []
@@ -30,7 +31,7 @@ class Solution2:
         route = []
         # cache_sum = 0
         total_sum = sum(nums)
-        print(total_sum)
+        # print(total_sum)
         def backtrack(t_sum, total_sum):
 
             if len(route) == len(nums) and t_sum == total_sum:
@@ -46,6 +47,7 @@ class Solution2:
 
         backtrack(0, total_sum)
         return results
+
 
 if __name__ == '__main__':
     # pprint(solution([1, 2, 3, 4]))
