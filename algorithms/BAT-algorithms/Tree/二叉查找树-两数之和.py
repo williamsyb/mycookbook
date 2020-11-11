@@ -64,7 +64,7 @@ def findTarget(root, k):
 
 
 if __name__ == '__main__':
-    from Tree.tree import construct_tree
+    from .tree import construct_tree
 
     root = construct_tree()
     print(findTarget(root, 9))

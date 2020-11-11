@@ -21,3 +21,10 @@ def post_order_traversal(root):  # 后序
         stack.append(node.left)
         stack.append(node.right)
     return result[::-1]
+
+
+if __name__ == '__main__':
+    from tree import construct_tree
+
+    tree = construct_tree()
+    print(post_order_traversal(tree))

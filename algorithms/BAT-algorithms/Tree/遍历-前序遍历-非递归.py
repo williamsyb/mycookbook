@@ -17,3 +17,10 @@ def pre_order_traversal(root):  # 前序
         stack.append(node.right)
         stack.append(node.left)
     return result
+
+
+if __name__ == '__main__':
+    from tree import construct_tree
+
+    tree = construct_tree()
+    print(pre_order_traversal(tree))

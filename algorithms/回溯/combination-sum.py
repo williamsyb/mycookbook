@@ -111,4 +111,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    pprint(solution([2, 3, 6, 7], 7))
+    pprint(solution([1, 2, 3, 6, 7], 7))

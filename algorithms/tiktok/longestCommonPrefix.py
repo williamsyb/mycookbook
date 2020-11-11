@@ -23,28 +23,30 @@ from typing import List
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 """
 
+
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        if len(strs)==0:
+        if len(strs) == 0:
             return ''
-        i=0
-        res =''
+        i = 0
+        res = ''
         while True:
-            char=''
-            for ind,item in enumerate(strs):
-                if i>len(item)-1:
+            char = ''
+            for ind, item in enumerate(strs):
+                if i > len(item) - 1:
                     return res
-                if ind==0:
-                    char=item[i]
-                elif char!=item[i]:
+                if ind == 0:
+                    char = item[i]
+                elif char != item[i]:
                     return res
-            res+=char
-            i+=1
+            res += char
+            i += 1
         return res
 
-if __name__=="__main__":
-    print(Solution().longestCommonPrefix(["flower","flow","flight"]))
-    li=["flower","flow","flight"]
+
+if __name__ == "__main__":
+    print(Solution().longestCommonPrefix(["flower", "flow", "flight"]))
+    li = ["flower", "flow", "flight"]
     for item in zip(*li):
         print(item)
     print(zip(*li))
